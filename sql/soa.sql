@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2015 at 06:32 PM
+-- Generation Time: Sep 26, 2015 at 07:55 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `aos`
+-- Database: `soa`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +28,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `books` (
   `id` int(10) unsigned NOT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `publisher` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `publish_year` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `pages` int(11) NOT NULL,
   `field` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -41,9 +44,8 @@ CREATE TABLE IF NOT EXISTS `books` (
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `name`, `author`, `publisher`, `pages`, `field`, `created_at`, `updated_at`) VALUES
-(1, 'Cấu trúc dữ liệu và Giải thuật', 'Đinh Mạnh Tường', 'NXB Đại Học Quốc Gia Hà Nội', 802, 'Tin học', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'book 2', 'author 2', '', 0, '', '2015-09-23 08:17:31', '2015-09-23 08:17:31');
+INSERT INTO `books` (`id`, `code`, `name`, `image`, `author`, `publisher`, `publish_year`, `pages`, `field`, `created_at`, `updated_at`) VALUES
+(2, 'D123', 'Service Oriented Architecture', 'books56063166536df.jpg', 'Dirk Krafizig', 'VNU', '2015', 1000, 'lecture', '2015-09-25 22:47:18', '2015-09-25 22:47:18');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_10_12_000000_create_users_table', 1),
 ('2014_10_12_100000_create_password_resets_table', 1),
-('2015_09_23_103814_create_books_table', 1);
+('2015_09_23_103814_create_books_table', 2);
 
 -- --------------------------------------------------------
 
@@ -80,18 +82,48 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `role`
+--
+
+CREATE TABLE IF NOT EXISTS `role` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name`) VALUES
+(0, 'student'),
+(1, 'librarian');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `active_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `image`, `email`, `password`, `active_token`, `role_id`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Hoang Thi Nhung', 'ava5606275cab8bc.gif', 'nhunght@smartosc.com', '$2y$10$gyGH7mnIJCFY2ZReDZh.d.gk.hqpSNRxFkjO.ck4gGfDiY0OIUhSK', '5e5b44d4ace9e8b593a877061fe073b5', 1, 'active', NULL, '2015-09-25 21:55:39', '2015-09-25 22:04:28');
 
 --
 -- Indexes for dumped tables
@@ -110,6 +142,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`), ADD KEY `password_resets_token_index` (`token`);
 
 --
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -125,10 +163,15 @@ ALTER TABLE `users`
 ALTER TABLE `books`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

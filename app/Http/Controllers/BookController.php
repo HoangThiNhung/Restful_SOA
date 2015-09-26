@@ -36,7 +36,7 @@ class BookController extends Controller
     public function create()
     {
         //
-        return view('page.add_newbook');
+        return view('backend.pages.book.add_newBook');
     }
 
     /**
@@ -48,10 +48,20 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->all();
+        $data=$request->all();
+
+        if(isset($data['image'])){
+            $thumb  = $data['image'];
+            $new = 'books' . uniqid() . '.' . $thumb->getClientOriginalExtension();
+            $thumb->move('upload/books' , $new);
+        }
+        $data['image'] = $new;
+
         Book::create($data);
+
         return Response::json(array(
-            'error'=>false),
+            'error'=>false,
+            'message'=>'created new book done'),
             200
         );
     }
@@ -95,14 +105,24 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $book = Book::find($id);
-        $data = $request->all();
-        $book ->name = $data['name'];
-        $book ->author = $data['author'];
-        $book ->publisher = $data['publisher'];
-        $book ->page =$data['page'];
-        $book ->field = $data['field'];
-        $book ->save();
+        $data = Request::all();
+        if(isset($data['image'])){
+            $thumb  = $data['image'];
+            $new = 'books' . uniqid() . '.' . $thumb->getClientOriginalExtension();
+            $thumb->move('upload/books' , $new);
+        }
+        $data['image'] = $new;
+
+        Book::where('id',$id)->update(array(
+            'code'=>$data['code'],
+            'name'=>$data['name'],
+            'image'=>$data['image'],
+            'author'=>$data['author'],
+            'publisher'=>$data['publisher'],
+            'publish_year'=>$data['publish_year'],
+            'pages'=>$data['pages'],
+            'field'=>$data['field'],
+        ));
 
         return Response::json(array(
             'error'=>false,
@@ -119,9 +139,9 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
-        $book = Book::find($id);
-
-        $book->delete();
+        $model = Book::find($id)->toArray();
+        Book::find($id)->delete();
+        File::delete('upload/books/' . $model['image'] );
 
         return Response::json(array(
             'error'=>false,

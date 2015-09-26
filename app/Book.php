@@ -9,5 +9,5 @@ class Book extends Model
     //
     protected $table = 'books';
 
-    protected $fillable = ['name', 'author'];
+    protected $fillable = ['code','name','image', 'author','publisher','publish_year','pages','field'];
 }

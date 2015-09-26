@@ -11,10 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/auth/login','AdminController@getLogin');
+Route::post('/auth/login','AdminController@postLogin');
+Route::get('/login','AdminController@getLogin');
+Route::get('/logout' , 'AdminController@getLogout');
+Route::get('/active' , 'frontendController@getActive');
+
+Route::get('/register','frontendController@getRegister');
+Route::post('/regis','frontendController@postRegister');
+
+Route::get('/active/{token}/{id}','AdminController@activeaccount');
+
+Route::group(['middleware'=>'auth'], function(){
+	
+	Route::group(['prefix'=>'/admin'], function()
+	{
+		Route::get('/','adminController@getIndex');
+		Route::resource('/users', 'UserController');
+		Route::post('/users/updateAvatar/{id}', 'UserControler@updateAvatar');
+		Route::resource('/books','BookController');
+
+	});
+
 });
-
-
-Route::resource('book','BookController');
-

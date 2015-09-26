@@ -15,24 +15,30 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => '',
+        'secret' => '',
     ],
 
     'mandrill' => [
-        'secret' => env('MANDRILL_SECRET'),
+        'secret' => '',
     ],
 
     'ses' => [
-        'key'    => env('SES_KEY'),
-        'secret' => env('SES_SECRET'),
+        'key'    => '',
+        'secret' => '',
         'region' => 'us-east-1',
     ],
 
     'stripe' => [
         'model'  => App\User::class,
-        'key'    => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        'key'    => '',
+        'secret' => '',
+    ],
+
+    'facebook' => [
+        'client_id' => '1626145747637990',
+        'client_secret' => 'a22e24ff6d763135e06c3b023b9ffb95',
+        'redirect' => 'http://your-callback-url',
     ],
 
 ];

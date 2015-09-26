@@ -1,43 +1,49 @@
 <?php
-    if(Auth::guest()){
-        echo "Page not fount";
-    }
-    if(Auth::user()->role_id != 1 ){
-        echo "Page not found";
-        die();
-    }
+	if(Auth::user()->role_id != 1 ){
+		echo "Page npt found";
+		die();
+	}
 ?>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Oreju | Dashboard</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/bootstrap/css/bootstrap.min.css')}}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/dist/css/AdminLTE.min.css')}}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/dist/css/skins/_all-skins.min.css')}}">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/plugins/iCheck/flat/blue.css')}}">
-    <!-- Morris chart -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/plugins/morris/morris.css')}}">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
-    <!-- Date Picker -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/plugins/datepicker/datepicker3.css')}}">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/plugins/daterangepicker/daterangepicker-bs3.css')}}">
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{asset('assets/LTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-    <script type="text/javascript" src="{{ asset('public/tinymce/js/jquery.js')}}"></script>
-    <script src="{{ asset('public/tinymce/tinymce.min.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/fancybox/jquery.fancybox.css') }}" media="screen" />
-    <script type="text/javascript" src="{{ asset('public/fancybox/jquery.fancybox.pack.js') }}"></script>
-</head>
+<meta charset="utf-8"/>
+<title>Metronic | Admin Dashboard Template</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="{{ asset('/assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
+
+<!-- TyniMCE -->
+<script type="text/javascript" src="{{ asset('tinymce/js/jquery.js')}}"></script>
+<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('fancybox/jquery.fancybox.css') }}" media="screen" />
+<script type="text/javascript" src="{{ asset('fancybox/jquery.fancybox.pack.js') }}"></script>
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<link href="{{ asset('/assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/global/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/bootstrap/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+<link href="{{ asset('/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/global/plugins/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/global/plugins/jqvmap/jqvmap/jqvmap.css') }}" rel="stylesheet" type="text/css"/>
+<!-- END PAGE LEVEL PLUGIN STYLES -->
+<!-- BEGIN PAGE STYLES -->
+<link href="{{ asset('/assets/admin/pages/css/tasks.css') }}" rel="stylesheet" type="text/css"/>
+<!-- END PAGE STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="{{ asset('/assets/global/css/components.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/global/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/admin/layout/css/layout.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/assets/admin/layout/css/themes/default.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="{{ asset('/assets/admin/layout/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="favicon.ico"/>
