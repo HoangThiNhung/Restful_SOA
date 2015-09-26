@@ -21,7 +21,6 @@ class BookController extends Controller
         $books = Book::get();
         // return view('page.index');
         return Response::json(array(
-            'error' => false,
             'books' => $books->toArray()),
             200
         );
@@ -60,7 +59,6 @@ class BookController extends Controller
         Book::create($data);
 
         return Response::json(array(
-            'error'=>false,
             'message'=>'created new book done'),
             200
         );
@@ -77,7 +75,6 @@ class BookController extends Controller
         //
         $book = Book::find($id);
         return Response::json(array(
-            'error'=>false,
             'books'=>$book->toArray()),
         200
         );
@@ -125,7 +122,6 @@ class BookController extends Controller
         ));
 
         return Response::json(array(
-            'error'=>false,
             'message'=>'Book Updated'),
         200);
     }
@@ -144,7 +140,6 @@ class BookController extends Controller
         File::delete('upload/books/' . $model['image'] );
 
         return Response::json(array(
-            'error'=>false,
             'message'=>'Book deleted'),
         200);
     }
