@@ -26,7 +26,7 @@ Route::group(['middleware'=>'auth'], function(){
 	
 	Route::group(['prefix'=>'/admin'], function()
 	{
-		Route::get('/','adminController@getIndex');
+		Route::get('/','AdminController@getIndex');
 		Route::resource('/users', 'UserController');
 		Route::post('/users/updateAvatar/{id}', 'UserControler@updateAvatar');
 		Route::resource('/books','BookController');
