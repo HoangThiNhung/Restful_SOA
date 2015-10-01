@@ -22,7 +22,8 @@ class BookController extends Controller
         // return view('page.index');
         return Response::json(array(
             'books' => $books->toArray()),
-            200
+            200,
+            array('Access-Control-Allow-Origin' => '*')
         );
 
     }
@@ -60,7 +61,8 @@ class BookController extends Controller
 
         return Response::json(array(
             'message'=>'created new book done'),
-            200
+            200,
+            array('Access-Control-Allow-Origin' => '*')
         );
     }
 
@@ -76,7 +78,8 @@ class BookController extends Controller
         $book = Book::find($id);
         return Response::json(array(
             'books'=>$book->toArray()),
-        200
+        200,
+        array('Access-Control-Allow-Origin' => '*')
         );
     }
 
@@ -123,7 +126,9 @@ class BookController extends Controller
 
         return Response::json(array(
             'message'=>'Book Updated'),
-        200);
+        200,
+        array('Access-Control-Allow-Origin' => '*')
+        );
     }
 
     /**
@@ -141,6 +146,8 @@ class BookController extends Controller
 
         return Response::json(array(
             'message'=>'Book deleted'),
-        200);
+        200,
+        array('Access-Control-Allow-Origin' => '*')
+        );
     }
 }
