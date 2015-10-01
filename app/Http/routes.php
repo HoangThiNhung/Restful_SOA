@@ -34,3 +34,6 @@ Route::group(['middleware'=>'auth'], function(){
 	});
 
 });
+
+Route::get('/listCategories','BookController@listCategories');
+Route::get('/category/{field}','BookController@category');

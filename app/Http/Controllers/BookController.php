@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Book;
 use Response;
+use DB;
 
 class BookController extends Controller
 {
@@ -148,6 +149,30 @@ class BookController extends Controller
             'message'=>'Book deleted'),
         200,
         array('Access-Control-Allow-Origin' => '*')
+        );
+    }
+
+    public function listCategories()
+    {
+        //$users = DB::table('users')->select('name', 'email as user_email')->get();
+
+        $listCategory = DB::table('books')->select('field')->distinct()->get();
+
+        return Response::json(array(
+            'listCategory' => $listCategory),
+            200,
+            array('Access-Control-Allow-Origin' => '*')
+        );
+
+
+    }
+    public function category($field){
+        $book = Book::where('field',$field)->get();
+
+        return Response::json(array(
+            'book' => $book->toArray()),
+            200,
+            array('Access-Control-Allow-Origin' => '*')
         );
     }
 }

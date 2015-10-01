@@ -16,3 +16,5 @@
 
 ####BookController: thư mục app/Http/Controller/BookController.php
 #### restful route: thư mục app/Http/routes.php
+####list Category : Restful_API/listCategories  // liệt kê các category trong table Book
+#### query các loại sách theo từng category: Restful_API/category/{field}   (field = lecture , ...)
