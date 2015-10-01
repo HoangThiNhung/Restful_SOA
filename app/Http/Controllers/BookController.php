@@ -57,8 +57,17 @@ class BookController extends Controller
             $thumb->move('upload/books' , $new);
         }
         $data['image'] = $new;
+        $book = new Book;
+        $book ->code =$data['code'];
+        $book ->name= $data['name'];
+        $book ->image= $data['image'];
+        $book ->author= $data['author'];
+        $book ->publisher= $data['publisher'];
+        $book ->publish_year= $data['publish_year'];
+        $book ->pages= $data['pages'];
+        $book ->field= $data['field'];
+        $book ->save();
 
-        Book::create($data);
 
         return Response::json(array(
             'message'=>'created new book done'),
