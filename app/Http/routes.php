@@ -37,3 +37,6 @@ Route::group(['middleware'=>'auth'], function(){
 
 Route::get('/listCategories','BookController@listCategories');
 Route::get('/category/{field}','BookController@category');
+Route::resource('/users', 'UserController');
+Route::post('/users/updateAvatar/{id}', 'UserControler@updateAvatar');
+Route::resource('/books','BookController');
