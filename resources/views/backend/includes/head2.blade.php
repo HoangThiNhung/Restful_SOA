@@ -1,12 +1,4 @@
-<?php
-    if(Auth::guest()){
-        echo "Page not fount";
-    }
-    if(Auth::user()->role_id != 1 ){
-        echo "Page not found";
-        die();
-    }
-?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

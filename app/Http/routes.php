@@ -39,4 +39,10 @@ Route::get('/listCategories','BookController@listCategories');
 Route::get('/category/{field}','BookController@category');
 Route::resource('/users', 'UserController');
 Route::post('/users/updateAvatar/{id}', 'UserControler@updateAvatar');
-Route::resource('/books','BookController');
+
+//Route::resource('/books','BookController');
+Route::get('/books','BookController@index');
+Route::get('/books/{id}','BookController@show');
+Route::post('books','BookController@store');
+Route::put('books','BookController@update');
+Route::delete('books','BookController@destroy');

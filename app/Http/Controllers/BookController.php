@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Book;
 use Response;
 use DB;
+use File;
 
 class BookController extends Controller
 {
@@ -51,22 +52,23 @@ class BookController extends Controller
         //
         $data=$request->all();
 
-        if(isset($data['image'])){
-            $thumb  = $data['image'];
-            $new = 'books' . uniqid() . '.' . $thumb->getClientOriginalExtension();
-            $thumb->move('upload/books' , $new);
-        }
-        $data['image'] = $new;
-        $book = new Book;
-        $book ->code =$data['code'];
-        $book ->name= $data['name'];
-        $book ->image= $data['image'];
-        $book ->author= $data['author'];
-        $book ->publisher= $data['publisher'];
-        $book ->publish_year= $data['publish_year'];
-        $book ->pages= $data['pages'];
-        $book ->field= $data['field'];
-        $book ->save();
+        // if(isset($data['image'])){
+        //     $thumb  = $data['image'];
+        //     $new = 'books' . uniqid() . '.' . $thumb->getClientOriginalExtension();
+        //     $thumb->move('upload/books' , $new);
+        // }
+        // $data['image'] = $new;
+        //$book = new Book;
+        // $book->code =$data['code'];
+        // $book->name= $data['name'];
+        // $book->image= $data['image'];
+        // $book->author= $data['author'];
+        // $book->publisher= $data['publisher'];
+        // $book->publish_year= $data['publish_year'];
+        // $book->pages= $data['pages'];
+        // $book->field= $data['field'];
+        // $book->save();
+        BooK::create($data);
 
 
         return Response::json(array(
@@ -115,13 +117,7 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data = Request::all();
-        if(isset($data['image'])){
-            $thumb  = $data['image'];
-            $new = 'books' . uniqid() . '.' . $thumb->getClientOriginalExtension();
-            $thumb->move('upload/books' , $new);
-        }
-        $data['image'] = $new;
+        $data = $request->all();
 
         Book::where('id',$id)->update(array(
             'code'=>$data['code'],
