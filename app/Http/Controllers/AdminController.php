@@ -4,6 +4,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Redirect;
 use Request;
+use Response;
 use Hash;
 use App\User;
 use App\Role;
@@ -44,30 +45,58 @@ class AdminController extends Controller {
 		{ 
             if(Auth::user()->role_id == 1){
 
-                    if(Auth::user()->status == 'active'){
-                    return Redirect::to('admin/');
+                if(Auth::user()->status == 'active'){
+                    return Response::json(array(
+                        'message'=>'welcome admin'),
+                        200,
+                        array('Access-Control-Allow-Origin' => '*')
+                    );
                 }else{
 
                     Auth::logout();
-                    return Redirect::to('auth/login')->withErrors(['error' => 'Account not Active. Please check mail active account']);
+                    return Response::json(array(
+                        'message'=>'account not active'),
+                        200,
+                        array('Access-Control-Allow-Origin' => '*')
+                    );
                 }
-                return Redirect::to('admin/');
+                return Response::json(array(
+                        'message'=>'welcome admin'),
+                        200,
+                        array('Access-Control-Allow-Origin' => '*')
+                    );
             }elseif (Auth::user()->role_id == 0) {
 
-                    if(Auth::user()->status == 'active'){
-                        return Redirect::to('/');
+                if(Auth::user()->status == 'active'){
+                        return Response::json(array(
+                            'message'=>'welcome student'),
+                            200,
+                            array('Access-Control-Allow-Origin' => '*')
+                        );
                 }else{
 
                     Auth::logout();
-                    return Redirect::to('auth/login')->withErrors(['error' => 'Account not Active. Please check mail active account']);
+                    return Response::json(array(
+                        'message'=>'account not active'),
+                        200,
+                        array('Access-Control-Allow-Origin' => '*')
+                    );
                 }
             }else{
                 Auth::logout();
-                return Redirect::to('auth/login')->withErrors(['error' => 'Account not Admin']);
+                return Response::json(array(
+                        'message'=>'login fail'),
+                        200,
+                        array('Access-Control-Allow-Origin' => '*')
+                    );
             }
      		
 		}else{
-			return Redirect::to('auth/login')->withErrors(['error' => 'Login Faill']);
+			return Response::json(array(
+                        'message'=>'login fail'),
+                        200,
+                        array('Access-Control-Allow-Origin' => '*')
+                    );
 		}
 	}
 

@@ -44,5 +44,5 @@ Route::post('/users/updateAvatar/{id}', 'UserControler@updateAvatar');
 Route::get('/books','BookController@index');
 Route::get('/books/{id}','BookController@show');
 Route::post('books','BookController@store');
-Route::put('books','BookController@update');
-Route::delete('books','BookController@destroy');
+Route::post('books/{id}/update','BookController@update');
+Route::delete('books/{id}','BookController@destroy');

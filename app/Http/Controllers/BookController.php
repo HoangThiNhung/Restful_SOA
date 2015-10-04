@@ -104,7 +104,8 @@ class BookController extends Controller
     public function edit($id)
     {
         //
-        return 0;
+        $book = Book::find($id);
+        return view('backend.pages.book.edit');
     }
 
     /**
@@ -116,20 +117,33 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $data = $request->all();
+        $book = Book::find($id);
+        $book->update($data);
+        //Book::updateBook($id);
+        //
+        // $book = Book::find($id);
+        // $data = $request->all();
 
-        Book::where('id',$id)->update(array(
-            'code'=>$data['code'],
-            'name'=>$data['name'],
-            'image'=>$data['image'],
-            'author'=>$data['author'],
-            'publisher'=>$data['publisher'],
-            'publish_year'=>$data['publish_year'],
-            'pages'=>$data['pages'],
-            'field'=>$data['field'],
-        ));
-
+        // $book->code = $data['code'];
+        // $book->name = $data['name'];
+        // $book->image = $data['image'];
+        // $book->author = $data['author'];
+        // $book->publisher= $data['publisher'];
+        // $book->publish_year=$data['publish_year'];
+        // $book->pages=$data['pages'];
+        // $book->field=$data['field'];
+        // $book->save();
+        // Book::where('id',$id)->update(array(
+        //     'code'=>$data['code'],
+        //     'name'=>$data['name'],
+        //     'image'=>$data['image'],
+        //     'author'=>$data['author'],
+        //     'publisher'=>$data['publisher'],
+        //     'publish_year'=>$data['publish_year'],
+        //     'pages'=>$data['pages'],
+        //     'field'=>$data['field'],
+        // ));
         return Response::json(array(
             'message'=>'Book Updated'),
         200,
