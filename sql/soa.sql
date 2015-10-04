@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2015 at 07:55 AM
+-- Generation Time: Oct 03, 2015 at 04:30 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -36,16 +36,18 @@ CREATE TABLE IF NOT EXISTS `books` (
   `publish_year` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `pages` int(11) NOT NULL,
   `field` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `code`, `name`, `image`, `author`, `publisher`, `publish_year`, `pages`, `field`, `created_at`, `updated_at`) VALUES
-(2, 'D123', 'Service Oriented Architecture', 'books56063166536df.jpg', 'Dirk Krafizig', 'VNU', '2015', 1000, 'lecture', '2015-09-25 22:47:18', '2015-09-25 22:47:18');
+INSERT INTO `books` (`id`, `code`, `name`, `image`, `author`, `publisher`, `publish_year`, `pages`, `field`, `description`, `created_at`, `updated_at`) VALUES
+(2, 'D123', 'Service Oriented Architecture', 'books56063166536df.jpg', 'Dirk Krafizig', 'VNU', '2015', 1000, 'lecture', '', '2015-09-25 22:47:18', '2015-09-25 22:47:18'),
+(5, 'D1893', 'Cau Truc Du Lieu Giai Thuat', 'books560d5d587d415.gif', 'Le Sy Vinh', 'DH Cong Nghe', '2015', 1000, 'lecture', '', '2015-10-01 09:20:40', '2015-10-01 09:20:40');
 
 -- --------------------------------------------------------
 
@@ -88,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 CREATE TABLE IF NOT EXISTS `role` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `role`
@@ -123,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `image`, `email`, `password`, `active_token`, `role_id`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Hoang Thi Nhung', 'ava5606275cab8bc.gif', 'nhunght@smartosc.com', '$2y$10$gyGH7mnIJCFY2ZReDZh.d.gk.hqpSNRxFkjO.ck4gGfDiY0OIUhSK', '5e5b44d4ace9e8b593a877061fe073b5', 1, 'active', NULL, '2015-09-25 21:55:39', '2015-09-25 22:04:28');
+(1, 'Hoang Thi Nhung', 'ava5606275cab8bc.gif', 'nhunght@smartosc.com', '$2y$10$gyGH7mnIJCFY2ZReDZh.d.gk.hqpSNRxFkjO.ck4gGfDiY0OIUhSK', '5e5b44d4ace9e8b593a877061fe073b5', 1, 'active', 'u3qG8apVt8mUHtTIH0b5w4M08TN7zkWR0GFh2akHRAxa22L09MI6GVBT1LVr', '2015-09-25 21:55:39', '2015-10-01 08:13:29');
 
 --
 -- Indexes for dumped tables
@@ -161,12 +163,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
