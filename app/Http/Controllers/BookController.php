@@ -52,24 +52,14 @@ class BookController extends Controller
         //
         $data=$request->all();
 
-        // if(isset($data['image'])){
-        //     $thumb  = $data['image'];
-        //     $new = 'books' . uniqid() . '.' . $thumb->getClientOriginalExtension();
-        //     $thumb->move('upload/books' , $new);
-        // }
-        // $data['image'] = $new;
-        //$book = new Book;
-        // $book->code =$data['code'];
-        // $book->name= $data['name'];
-        // $book->image= $data['image'];
-        // $book->author= $data['author'];
-        // $book->publisher= $data['publisher'];
-        // $book->publish_year= $data['publish_year'];
-        // $book->pages= $data['pages'];
-        // $book->field= $data['field'];
-        // $book->save();
-        BooK::create($data);
+        if(isset($data['image'])){
+            $thumb  = $data['image'];
+            $new = 'book' . uniqid() . '.' . $thumb->getClientOriginalExtension();
+            $thumb->move('upload/books' , $new);
+        }
+        $data['image'] = $new;
 
+        BooK::create($data);
 
         return Response::json(array(
             'message'=>'created new book done'),
@@ -89,7 +79,7 @@ class BookController extends Controller
         //
         $book = Book::find($id);
         return Response::json(array(
-            'books'=>$book->toArray()),
+            'books'=>$book),
         200,
         array('Access-Control-Allow-Origin' => '*')
         );
@@ -104,8 +94,7 @@ class BookController extends Controller
     public function edit($id)
     {
         //
-        $book = Book::find($id);
-        return view('backend.pages.book.edit');
+        return 0;
     }
 
     /**
@@ -118,6 +107,12 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        if(isset($data['image'])){
+            $thumb  = $data['image'];
+            $new = 'book' . uniqid() . '.' . $thumb->getClientOriginalExtension();
+            $thumb->move('upload/books' , $new);
+        }
+        $data['image'] = $new;
         $book = Book::find($id);
         $book->update($data);
         //Book::updateBook($id);

@@ -22,7 +22,7 @@ Route::post('/regis','frontendController@postRegister');
 
 Route::get('/active/{token}/{id}','AdminController@activeaccount');
 
-Route::group(['middleware'=>'auth'], function(){
+//Route::group(['middleware'=>'auth'], function(){
 	
 	Route::group(['prefix'=>'/admin'], function()
 	{
@@ -33,7 +33,7 @@ Route::group(['middleware'=>'auth'], function(){
 
 	});
 
-});
+//});
 
 Route::get('/listCategories','BookController@listCategories');
 Route::get('/category/{field}','BookController@category');
